@@ -4,9 +4,10 @@
 
 def main(args: list[str]) -> int:
     # Input
-    amount = float(input('Please enter an amount to invest, in dollars: $'))
-    rate = float(input('Please enter the interest rate, in percent: ')) / 100
-    periods = int(input('Please enter how long the investment will be for, '
+    ## Accumulator variable
+    amount: float = float(input('Please enter an amount to invest, in dollars: $'))
+    rate: float = float(input('Please enter the interest rate, in percent: ')) / 100
+    periods: int = int(input('Please enter how long the investment will be for, '
                         +'in periods: '))
     print('Investing $', amount, 'at', (rate*100), '% for', periods, 'periods.')
     
@@ -16,8 +17,10 @@ def main(args: list[str]) -> int:
     print('-' * 30)
 
     ## Loop to calculate and print the values in the table
+    ### (Accumulator-pattern loop)
     for i in range(periods+1):
         print(i, amount, sep="\t$")
+        # Update the accumulator variable
         amount = amount + (amount * rate)
     return 0
 
