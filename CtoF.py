@@ -6,7 +6,7 @@ def main(args: list[str]) -> int:
     degF: float = (9/5) * degC + 32
 
     # Print result (output)
-    print(degC, 'degrees Celsius =', degF, 'degrees Fahrenheit')
+    print(degC, '\u00b0 C =', degF, '\u00b0 F', sep='')
     
     return 0
 

@@ -9,7 +9,7 @@ def main(args: list[str]) -> int:
     rate: float = float(input('Please enter the interest rate, in percent: ')) / 100
     periods: int = int(input('Please enter how long the investment will be for, '
                         +'in periods: '))
-    print('Investing $', amount, 'at', (rate*100), '% for', periods, 'periods.')
+    print('Investing $', round(amount,2), 'at', (rate*100), '% for', periods, 'periods.')
     
     # Process and Output together
     ## Print the top of the table
@@ -19,7 +19,7 @@ def main(args: list[str]) -> int:
     ## Loop to calculate and print the values in the table
     ### (Accumulator-pattern loop)
     for i in range(periods+1):
-        print(i, amount, sep="\t$")
+        print(i, round(amount,2), sep="\t$")
         # Update the accumulator variable
         amount = amount + (amount * rate)
     return 0
