@@ -49,6 +49,18 @@ def main(args: list[str]) -> int:
     instructions.setSize(20)
     #instructions.setFace('courier')
     instructions.draw(w)
+
+    # Aliasing
+    label2: Text = instructions # Two names, one object
+    label2.move(0, 760)        # Move to bottom center
+    center_oval = oval.getCenter()
+    label2.setText('Center of oval: (' + str(center_oval.getX()) + ','
+                   + str(center_oval.getY()) + ')')
+    # Changes made to label2 affect instructions as well
+    anchor = instructions.getAnchor()
+    instructions.setText('Anchor: (' + str(anchor.getX()) + ','
+                         + str(anchor.getY()) + ')') # Not where it was!
+
     # Wait for a mouse click and then close the window
     w.getMouse()
     w.close()
