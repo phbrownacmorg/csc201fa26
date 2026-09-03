@@ -3,6 +3,7 @@ from graphics import *
 def main(args: list[str]) -> int:
 
     w: GraphWin = GraphWin('Graphics demo', 800, 800)
+    w.setCoords(-1, -1, 1, 1)
 
     # Wait for a mouse click and then close the window
     w.getMouse()
