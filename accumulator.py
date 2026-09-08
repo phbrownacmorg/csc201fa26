@@ -13,7 +13,7 @@ def main(args: list[str]) -> int:
 
     ## Accumulator pattern #2
     ### Accumulator variable
-    total = 0 #### Identity element for addition
+    total: float = 0 #### Identity element for addition
     ### Loop
     for value in nums:
         ### Update the accumulator variable each time through the loop
