@@ -1,4 +1,5 @@
 def main(args: list[str]) -> int:
+    
     return 0
 
 if __name__ == '__main__':
