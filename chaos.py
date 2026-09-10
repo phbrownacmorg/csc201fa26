@@ -8,7 +8,7 @@ def main():
     x = min(1, max(0, x))
     print('Seed value, clamped to interval [0, 1]:', x)
     # Loop
-    for i in range(10):
+    for i in range(10): # type: ignore
         # Each time around the loop, update the accumulator variable
         x = 3.9 * x * (1 - x)
         print(x)

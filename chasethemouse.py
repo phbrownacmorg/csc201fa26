@@ -120,7 +120,7 @@ def main(args: list[str]) -> int:
     cat = drawList(moveTo(makeCat(), Point(1,1)), w)
 
     # Chase the clicks for 5 clicks
-    for i in range(5):
+    for i in range(5): # type: ignore
         click: Point = w.getMouse()
         mousePos: Point = animalCenter(mouse)
         moveTo(mouse, click)

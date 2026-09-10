@@ -17,7 +17,7 @@ def calc_investment(amount: float, rate: float, periods: int) -> list[float]:
     values: list[float] = []
     ## Loop to calculate the values in the table
     ### (Accumulator-pattern loop)
-    for i in range(periods+1):
+    for i in range(periods+1): # type: ignore
         # Update accumulator variable #2
         values.append(amount)
         # Update the accumulator variable
