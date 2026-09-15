@@ -10,8 +10,11 @@ def read_system() -> tuple[float, float, float]:
 def find_roots(a: float, b: float, c: float) -> tuple[float, float]:
     det: float = b**2 - 4 * a * c
     # print(det)
-    root1 = (-b + math.sqrt(det)) / (2*a)
-    root2 = (-b - math.sqrt(det)) / (2*a)
+    if det < 0:
+        root1, root2 = math.nan, math.nan
+    else:
+        root1 = (-b + math.sqrt(det)) / (2*a)
+        root2 = (-b - math.sqrt(det)) / (2*a)
     return root1, root2
 
 def main(args: list[str]) -> int:
@@ -23,7 +26,10 @@ def main(args: list[str]) -> int:
     root1, root2 = find_roots(a, b, c)
 
     # Output
-    print('The roots are', root1, 'and', root2)
+    if not math.isnan(root1):
+        print('The roots are', root1, 'and', root2)
+    else:
+        print('The system has no real roots.')
     
     return 0
 
