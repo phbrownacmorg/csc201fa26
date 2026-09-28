@@ -6,7 +6,7 @@ def main(args: list[str]) -> int:
     ### Accumulator variable
     nums: list[float] = [] #### Identity element for appending to a list
     ### Loop
-    for i in range(length): # type: ignore
+    for i in range(length):
         ### Update the accumulator variable every time through the loop
         nums.append(float(input('Please enter a number: ')))
     print('The list is', nums)
