@@ -6,8 +6,8 @@ from graphics import *
 import math
 
 def read_parameters() -> tuple[float, float, int]:
-    amount: float = math.isnan # Invalid value, will be overwritten
-    rate: float = math.isnan # Invalid value, will be overwritten
+    amount: float = math.nan # Invalid value, will be overwritten
+    rate: float = math.nan # Invalid value, will be overwritten
     periods: int = -1        # Invalid value, will be overwritten
     try:
         amount = float(input('Please enter an amount to invest, in dollars: $'))
