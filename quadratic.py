@@ -19,17 +19,21 @@ def find_roots(a: float, b: float, c: float) -> tuple[float, float]:
 
 def main(args: list[str]) -> int:
     # Read a, b, c
-    a, b, c = read_system()
-    print('The system is',a, '* x**2 +',b,'* x +',c,'= 0')
-
-    # Find the roots
-    root1, root2 = find_roots(a, b, c)
-
-    # Output
-    if not math.isnan(root1):
-        print('The roots are', root1, 'and', root2)
+    try:
+        a, b, c = read_system()
+    except ValueError:
+        print('The coefficients have to be numbers.')
     else:
-        print('The system has no real roots.')
+        print('The system is',a, '* x**2 +',b,'* x +',c,'= 0')
+
+        # Find the roots
+        root1, root2 = find_roots(a, b, c)
+
+        # Output
+        if not math.isnan(root1):
+            print('The roots are', root1, 'and', root2)
+        else:
+            print('The system has no real roots.')
     
     return 0
 

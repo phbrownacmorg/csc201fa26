@@ -5,68 +5,21 @@
 from graphics import *
 import math
 
-def string_could_be_float(s: str) -> bool:
-    # Return True if and only if string S could contain a
-    # floating-point value.
-    s = s.strip() # Remove leading and trailing spaces
-    s = s.removeprefix('-') # Remove a beginning '-', if there is one
-    s = s.replace('.', '', count=1) # Remove at most one decimal point
-    # Now, we should have only ASCII decimal digits
-    return s.isascii() and s.isdecimal()
-
-def read_pos_float(prompt: str, errmsg: str) -> float:
-    # Read and return a positive float value using PROMPT,
-    # or else print ERRMSG and return math.nan.
-    in_string: str = input(prompt)
-    if string_could_be_float(in_string):
-        result = float(in_string)
-    else:
-        result = math.nan
-    if result < 0:
-        result = math.nan
-    if math.isnan(result):
-        print(errmsg)
-    return result
-
-def string_could_be_int(s: str) -> bool:
-    # Return True if and only if string S could contain an
-    # integer value.
-    s = s.strip() # Remove leading and trailing spaces
-    s = s.removeprefix('-') # Remove a beginning '-', if there is one
-    # Now, we should have only ASCII decimal digits
-    return s.isascii() and s.isdecimal()
-
-def read_pos_int(prompt: str, errmsg: str) -> int:
-    # Read and return a positive integer value using PROMPT,
-    # or else print ERRMSG and return -1.
-    in_string: str = input(prompt)
-    if string_could_be_int(in_string):
-        result = int(in_string)
-    else:
-        result = -1
-    if result < 0:
-        print(errmsg)
-        result = -1
-    return result   
-
 def read_parameters() -> tuple[float, float, int]:
+    amount: float = math.isnan # Invalid value, will be overwritten
     rate: float = math.isnan # Invalid value, will be overwritten
-    periods: int = -1        # Invalid value, will be overwritten *if*
-                             #   there's no error reading amount or rate.
-    amount: float = read_pos_float('Please enter an amount to invest,' + 
-                                   ' in dollars: $',
-                                   'PROBLEM: Amount to invest' +
-                                   ' must be a positive number.')
-    if not math.isnan(amount):
-        rate = read_pos_float('Please enter the interest rate,' +
-                              ' in percent: ',
-                              'PROBLEM: Interest rate must be positive.')
-        if not math.isnan(rate):
-            rate = rate / 100
-            periods = read_pos_int('Please enter how long the investment will' +
-                                   ' be for, in periods: ',
-                                   'PROBLEM: Number of periods must be' +
-                                   ' a positive integer.')
+    periods: int = -1        # Invalid value, will be overwritten
+    try:
+        amount = float(input('Please enter an amount to invest, in dollars: $'))
+        rate = float(input('Please enter the interest rate, in percent: '))/100
+        periods = int(input('Please enter how long the investment will' +
+                            ' be for, in periods: '))
+        if amount < 0 or rate < 0 or periods < 0:
+            raise ValueError
+    except ValueError:
+        print('Amount, rate, and number of periods must all be positive' +
+              ' numbers.\n\tNumber of periods must be an integer.')
+        periods = -1
     return amount, rate, periods
 
 def calc_investment(amount: float, rate: float, periods: int) -> list[float]:
