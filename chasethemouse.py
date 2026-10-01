@@ -1,5 +1,6 @@
 from graphics import *
 import math
+from buttonclick import inButton, makeButton
 
 # Replace the mouse with a list of GraphicsObject items.
 # The first item on the list supports getCenter(); that is the center
@@ -118,13 +119,15 @@ def main(args: list[str]) -> int:
     # Draw the "mouse"
     mouse = drawList(makeMouse(), w)
     cat = drawList(moveTo(makeCat(), Point(1,1)), w)
+    quitButton = drawList(makeButton(Point(-1, 1), Point(-0.8, 0.8), 'Quit'), w)
+    click: Point = w.getMouse()
 
-    # Chase the clicks for 5 clicks
-    for i in range(5): # type: ignore
-        click: Point = w.getMouse()
+    # Chase the clicks until the user clicks in the Quit button
+    while not inButton(click, quitButton[0]):
         mousePos: Point = animalCenter(mouse)
         moveTo(mouse, click)
         moveTo(cat, mousePos)
+        click: Point = w.getMouse()
 
     # Wait for a mouse click and then close the window
     instructions.setText('Click once more to exit')
