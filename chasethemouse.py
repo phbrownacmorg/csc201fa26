@@ -114,7 +114,12 @@ def main(args: list[str]) -> int:
     # Instructions label
     instructions: Text = Text(Point(0, 0.95),
                               "Click to have the circle follow the mouse")
+    instructions.setSize(16)
     instructions.draw(w)
+
+    location: Text = Text(Point(0, 0.9), "(0, 0)")
+    location.setSize(16)
+    location.draw(w)
 
     # Draw the "mouse"
     mouse = drawList(makeMouse(), w)
@@ -122,8 +127,10 @@ def main(args: list[str]) -> int:
     quitButton = drawList(makeButton(Point(-1, 1), Point(-0.8, 0.8), 'Quit'), w)
     click: Point = w.getMouse()
 
+    
     # Chase the clicks until the user clicks in the Quit button
     while not inButton(click, quitButton[0]):
+        location.setText(f'({click.getX():.3}, {click.getY():.3})')
         mousePos: Point = animalCenter(mouse)
         moveTo(mouse, click)
         moveTo(cat, mousePos)

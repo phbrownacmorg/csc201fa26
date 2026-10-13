@@ -10,11 +10,13 @@ def main():
     except ValueError:
         print('The input needs to be a number greater than 0 and less than 1.')
     else:
-        print('Seed value, clamped to interval [0, 1]:', x)
+        print('Seed value:', x)
+        print(f'{"i":>2}\t{"x":^12}')
+        print('-' * 20)
         # Loop
         for i in range(10): # type: ignore
             # Each time around the loop, update the accumulator variable
             x = 3.9 * x * (1 - x)
-            print(x)
+            print(f'{i+1:>2}\t{x:<12.10}')
     
 main()
