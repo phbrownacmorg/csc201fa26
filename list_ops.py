@@ -72,7 +72,6 @@ def main(args: list[str]) -> int:
     list4 = ['Q']
     reverse(list4)
     print(list4)
-
     
     return 0
 
