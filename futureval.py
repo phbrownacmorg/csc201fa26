@@ -24,14 +24,14 @@ def read_parameters() -> tuple[float, float, int]:
 
 def calc_investment(amount: float, rate: float, periods: int) -> list[float]:
     ## Accumulator variable #2
-    values: list[float] = []
+    values: list[float] = [amount]
     ## Loop to calculate the values in the table
     ### (Accumulator-pattern loop)
-    for i in range(periods+1): # type: ignore
-        # Update accumulator variable #2
-        values.append(amount)
+    for i in range(periods): # type: ignore
         # Update the accumulator variable
         amount = amount + (amount * rate)
+        # Update accumulator variable #2
+        values.append(amount)
     return values    
 
 def print_table(values: list[float]) -> None:
